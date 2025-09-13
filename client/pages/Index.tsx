@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import SOSDialog from "@/components/mobile/SOSDialog";
+import GuideDialog from "@/components/mobile/GuideDialog";
+import ChecklistDialog from "@/components/mobile/ChecklistDialog";
+import SafetyDialog from "@/components/mobile/SafetyDialog";
 import {
   Ambulance,
   Activity,
@@ -57,17 +60,105 @@ export default function Index() {
     window.location.href = "tel:911";
   };
 
-  const featureTiles = [
-    { title: "Active SOS", icon: Ambulance, onClick: callEmergency, accent: "bg-red-50 text-red-600" },
-    { title: "First Aid Kit", icon: Stethoscope, href: "/first-aid" },
-    { title: "Find Hospitals", icon: MapPin, onClick: findHospitals },
-    { title: "First Aid Guide", icon: BookOpen, href: "/first-aid" },
-    { title: "Disaster Response", icon: ShieldCheck, onClick: () => toast({ title: "Disaster response", description: "Follow local authorities. Keep essentials ready." }) },
-    { title: "AI Guide", icon: Activity, onClick: () => toast({ title: "AI Guide", description: "Triage assistant coming soon." }) },
-    { title: "Emergency Number", icon: Phone, onClick: callEmergency },
-    { title: "Visual Aid", icon: ImageIcon, onClick: () => setVisualAid(true) },
-    { title: "Personal Safety", icon: ShieldCheck, onClick: () => toast({ title: "Personal safety", description: "Share your trip and location with trusted contacts." }) },
-    { title: "Health & Wellness", icon: HeartPulse, onClick: () => toast({ title: "Wellness tips", description: "Hydrate, sleep 7–9h, regular movement, balanced diet." }) },
+  const featureTiles: Array<React.ReactNode> = [
+    <SOSDialog key="sos-tile" trigger={
+      <Card className="group cursor-pointer transition-colors hover:bg-accent/30">
+        <CardHeader className="p-4">
+          <div className="mb-2 inline-flex size-10 items-center justify-center rounded-md bg-primary/10 text-primary bg-red-50 text-red-600">
+            <Ambulance className="size-5" />
+          </div>
+          <CardTitle className="text-sm">Active SOS</CardTitle>
+          <CardDescription className="hidden sm:block">Emergency actions</CardDescription>
+        </CardHeader>
+      </Card>
+    } />,
+    <Card key="kit" className="group cursor-pointer transition-colors hover:bg-accent/30">
+      <CardHeader className="p-4">
+        <div className="mb-2 inline-flex size-10 items-center justify-center rounded-md bg-primary/10 text-primary ">
+          <Stethoscope className="size-5" />
+        </div>
+        <CardTitle className="text-sm"><a href="/first-aid">First Aid Kit</a></CardTitle>
+        <CardDescription className="hidden sm:block">Open the guide</CardDescription>
+      </CardHeader>
+    </Card>,
+    <Card key="hospitals" onClick={findHospitals as any} className="group cursor-pointer transition-colors hover:bg-accent/30">
+      <CardHeader className="p-4">
+        <div className="mb-2 inline-flex size-10 items-center justify-center rounded-md bg-primary/10 text-primary ">
+          <MapPin className="size-5" />
+        </div>
+        <CardTitle className="text-sm">Find Hospitals</CardTitle>
+        <CardDescription className="hidden sm:block">Near you</CardDescription>
+      </CardHeader>
+    </Card>,
+    <Card key="guide" className="group cursor-pointer transition-colors hover:bg-accent/30">
+      <CardHeader className="p-4">
+        <div className="mb-2 inline-flex size-10 items-center justify-center rounded-md bg-primary/10 text-primary ">
+          <BookOpen className="size-5" />
+        </div>
+        <CardTitle className="text-sm"><a href="/first-aid">First Aid Guide</a></CardTitle>
+        <CardDescription className="hidden sm:block">CPR, bleeding, choking</CardDescription>
+      </CardHeader>
+    </Card>,
+    <ChecklistDialog key="disaster" trigger={
+      <Card className="group cursor-pointer transition-colors hover:bg-accent/30">
+        <CardHeader className="p-4">
+          <div className="mb-2 inline-flex size-10 items-center justify-center rounded-md bg-primary/10 text-primary ">
+            <ShieldCheck className="size-5" />
+          </div>
+          <CardTitle className="text-sm">Disaster Response</CardTitle>
+          <CardDescription className="hidden sm:block">Checklists</CardDescription>
+        </CardHeader>
+      </Card>
+    } />,
+    <GuideDialog key="ai" trigger={
+      <Card className="group cursor-pointer transition-colors hover:bg-accent/30">
+        <CardHeader className="p-4">
+          <div className="mb-2 inline-flex size-10 items-center justify-center rounded-md bg-primary/10 text-primary ">
+            <Activity className="size-5" />
+          </div>
+          <CardTitle className="text-sm">AI Guide</CardTitle>
+          <CardDescription className="hidden sm:block">Symptom triage</CardDescription>
+        </CardHeader>
+      </Card>
+    } />,
+    <Card key="call" onClick={callEmergency} className="group cursor-pointer transition-colors hover:bg-accent/30">
+      <CardHeader className="p-4">
+        <div className="mb-2 inline-flex size-10 items-center justify-center rounded-md bg-primary/10 text-primary ">
+          <Phone className="size-5" />
+        </div>
+        <CardTitle className="text-sm">Emergency Number</CardTitle>
+        <CardDescription className="hidden sm:block">Call now</CardDescription>
+      </CardHeader>
+    </Card>,
+    <Card key="visual" onClick={() => setVisualAid(true)} className="group cursor-pointer transition-colors hover:bg-accent/30">
+      <CardHeader className="p-4">
+        <div className="mb-2 inline-flex size-10 items-center justify-center rounded-md bg-primary/10 text-primary ">
+          <ImageIcon className="size-5" />
+        </div>
+        <CardTitle className="text-sm">Visual Aid</CardTitle>
+        <CardDescription className="hidden sm:block">Attention screen</CardDescription>
+      </CardHeader>
+    </Card>,
+    <SafetyDialog key="safety" trigger={
+      <Card className="group cursor-pointer transition-colors hover:bg-accent/30">
+        <CardHeader className="p-4">
+          <div className="mb-2 inline-flex size-10 items-center justify-center rounded-md bg-primary/10 text-primary ">
+            <ShieldCheck className="size-5" />
+          </div>
+          <CardTitle className="text-sm">Personal Safety</CardTitle>
+          <CardDescription className="hidden sm:block">Share location</CardDescription>
+        </CardHeader>
+      </Card>
+    } />,
+    <Card key="wellness" onClick={() => toast({ title: "Wellness tips", description: "Hydrate, sleep 7–9h, regular movement, balanced diet." })} className="group cursor-pointer transition-colors hover:bg-accent/30">
+      <CardHeader className="p-4">
+        <div className="mb-2 inline-flex size-10 items-center justify-center rounded-md bg-primary/10 text-primary ">
+          <HeartPulse className="size-5" />
+        </div>
+        <CardTitle className="text-sm">Health & Wellness</CardTitle>
+        <CardDescription className="hidden sm:block">Daily tips</CardDescription>
+      </CardHeader>
+    </Card>,
   ];
 
   return (
@@ -92,16 +183,8 @@ export default function Index() {
 
           {/* Quick actions grid */}
           <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
-            {featureTiles.map(({ title, icon: Icon, href, onClick, accent }) => (
-              <Card key={title} className="group cursor-pointer transition-colors hover:bg-accent/30" onClick={onClick as any}>
-                <CardHeader className="p-4">
-                  <div className={`mb-2 inline-flex size-10 items-center justify-center rounded-md bg-primary/10 text-primary ${accent ?? ""}`}>
-                    <Icon className="size-5" />
-                  </div>
-                  <CardTitle className="text-sm">{href ? <a href={href}>{title}</a> : title}</CardTitle>
-                  <CardDescription className="hidden sm:block">{title}</CardDescription>
-                </CardHeader>
-              </Card>
+            {featureTiles.map((node, i) => (
+              <div key={i}>{node}</div>
             ))}
           </div>
 
