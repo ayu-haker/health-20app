@@ -4,9 +4,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import SOSDialog from "@/components/mobile/SOSDialog";
 import {
   Ambulance,
-  Bot,
+  Robot,
   BookOpen,
-  FirstAidKit,
+  Bandage,
   HeartPulse,
   Image as ImageIcon,
   MapPin,
