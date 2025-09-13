@@ -15,7 +15,9 @@ function buildMapsUrl(lat: number, lng: number) {
   return `https://www.google.com/maps/search/hospital/@${lat},${lng},14z`;
 }
 
-export default function SOSDialog({ trigger }: { trigger: React.ReactNode }) {
+type Props = { trigger: React.ReactNode; emergency?: { main: string; ambulance?: string; police?: string; fire?: string; alt?: string[] }; country?: { code?: string; name?: string } };
+
+export default function SOSDialog({ trigger, emergency, country }: Props) {
   const { toast } = useToast();
   const [open, setOpen] = useState(false);
   const [loc, setLoc] = useState<{ lat: number; lng: number } | null>(null);
@@ -59,15 +61,36 @@ export default function SOSDialog({ trigger }: { trigger: React.ReactNode }) {
       <DialogContent className="max-w-sm">
         <DialogHeader>
           <DialogTitle>Emergency actions</DialogTitle>
-          <DialogDescription>Use responsibly. In a life‑threatening situation, call local emergency services.</DialogDescription>
+          <DialogDescription>
+            {country?.name ? `Detected region: ${country.name}.` : "Use responsibly."} In a life‑threatening situation, call local emergency services.
+          </DialogDescription>
         </DialogHeader>
         <div className="grid gap-3">
           <Button size="lg" className="w-full" asChild>
-            <a href="tel:911"><Phone className="mr-2 h-4 w-4" /> Call 911 (US)</a>
+            <a href={`tel:${(emergency?.main ?? "112")}`}><Phone className="mr-2 h-4 w-4" /> Call {(emergency?.main ?? "112")} {country?.code ? `(${country.code})` : ""}</a>
           </Button>
-          <Button size="lg" variant="secondary" className="w-full" asChild>
-            <a href="tel:112"><Phone className="mr-2 h-4 w-4" /> Call 112 (INTL)</a>
-          </Button>
+          {emergency?.alt?.[0] && (
+            <Button size="lg" variant="secondary" className="w-full" asChild>
+              <a href={`tel:${emergency.alt[0]}`}><Phone className="mr-2 h-4 w-4" /> Alt {emergency.alt[0]}</a>
+            </Button>
+          )}
+          <div className="grid grid-cols-3 gap-2">
+            {emergency?.ambulance && (
+              <Button variant="outline" asChild>
+                <a href={`tel:${emergency.ambulance}`}>Ambulance</a>
+              </Button>
+            )}
+            {emergency?.police && (
+              <Button variant="outline" asChild>
+                <a href={`tel:${emergency.police}`}>Police</a>
+              </Button>
+            )}
+            {emergency?.fire && (
+              <Button variant="outline" asChild>
+                <a href={`tel:${emergency.fire}`}>Fire</a>
+              </Button>
+            )}
+          </div>
           <div className="grid grid-cols-2 gap-2">
             <Button onClick={fetchLocation} variant="outline">Get location</Button>
             <Button onClick={shareLocation}><Share2 className="mr-2 h-4 w-4" /> Share location</Button>
