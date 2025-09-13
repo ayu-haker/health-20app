@@ -34,6 +34,9 @@ export default function Header() {
           <a href="#trends" className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground">
             Trends
           </a>
+          <NavLink to="/first-aid" className={navLinkClass}>
+            First Aid
+          </NavLink>
           <NavLink to="/solutions" className={navLinkClass}>
             Solutions
           </NavLink>
