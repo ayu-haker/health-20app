@@ -5,16 +5,29 @@ export default function Footer() {
         <div>
           <p className="text-xl font-semibold">Aether HealthTech</p>
           <p className="mt-2 max-w-xl text-sm text-muted-foreground">
-            Building cutting-edge technology that advances healthcare outcomes for growing populations around the world.
+            Building cutting-edge technology that advances healthcare outcomes
+            for growing populations around the world.
           </p>
         </div>
         <div className="grid grid-cols-2 gap-6 text-sm text-muted-foreground md:grid-cols-3">
-          <a href="#sectors" className="hover:text-foreground">Sectors</a>
-          <a href="#trends" className="hover:text-foreground">Trends</a>
-          <a href="#cta" className="hover:text-foreground">Get a demo</a>
-          <a href="#" className="hover:text-foreground">Privacy</a>
-          <a href="#" className="hover:text-foreground">Terms</a>
-          <a href="#" className="hover:text-foreground">Careers</a>
+          <a href="#sectors" className="hover:text-foreground">
+            Sectors
+          </a>
+          <a href="#trends" className="hover:text-foreground">
+            Trends
+          </a>
+          <a href="#cta" className="hover:text-foreground">
+            Get a demo
+          </a>
+          <a href="#" className="hover:text-foreground">
+            Privacy
+          </a>
+          <a href="#" className="hover:text-foreground">
+            Terms
+          </a>
+          <a href="#" className="hover:text-foreground">
+            Careers
+          </a>
         </div>
       </div>
       <div className="border-t">

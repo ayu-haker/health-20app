@@ -1,20 +1,36 @@
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
-export default function ChecklistDialog({ trigger }: { trigger: React.ReactNode }) {
+export default function ChecklistDialog({
+  trigger,
+}: {
+  trigger: React.ReactNode;
+}) {
   return (
     <Dialog>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="max-w-sm">
         <DialogHeader>
           <DialogTitle>Disaster response checklist</DialogTitle>
-          <DialogDescription>Basic readiness steps. Follow local authorities for official guidance.</DialogDescription>
+          <DialogDescription>
+            Basic readiness steps. Follow local authorities for official
+            guidance.
+          </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 text-sm">
           <div>
             <p className="font-medium">Before</p>
             <ul className="mt-1 list-disc space-y-1 pl-5 text-muted-foreground">
-              <li>Prepare go‑bag: water, non‑perishables, meds, ID, cash, charger.</li>
+              <li>
+                Prepare go‑bag: water, non‑perishables, meds, ID, cash, charger.
+              </li>
               <li>Share emergency plan and meeting point.</li>
               <li>Keep power bank charged and fuel above 50%.</li>
             </ul>
@@ -37,7 +53,9 @@ export default function ChecklistDialog({ trigger }: { trigger: React.ReactNode 
           </div>
           <div className="flex justify-end">
             <Button asChild>
-              <a href="#" download>Save checklist</a>
+              <a href="#" download>
+                Save checklist
+              </a>
             </Button>
           </div>
         </div>

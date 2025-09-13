@@ -61,13 +61,19 @@ export default function GuideDialog({ trigger }: { trigger: React.ReactNode }) {
         <DialogHeader>
           <DialogTitle>AI Guide (offline)</DialogTitle>
           <DialogDescription>
-            Choose a scenario for quick step‑by‑step guidance. This does not replace professional medical advice.
+            Choose a scenario for quick step‑by‑step guidance. This does not
+            replace professional medical advice.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-2">
           <div className="flex flex-wrap gap-2">
             {scenarios.map((s) => (
-              <Button key={s.key} size="sm" variant={active === s.key ? "default" : "outline"} onClick={() => setActive(s.key)}>
+              <Button
+                key={s.key}
+                size="sm"
+                variant={active === s.key ? "default" : "outline"}
+                onClick={() => setActive(s.key)}
+              >
                 {s.label}
               </Button>
             ))}
@@ -79,7 +85,9 @@ export default function GuideDialog({ trigger }: { trigger: React.ReactNode }) {
               ))}
             </ol>
           ) : (
-            <p className="text-sm text-muted-foreground">Select a scenario to see steps.</p>
+            <p className="text-sm text-muted-foreground">
+              Select a scenario to see steps.
+            </p>
           )}
         </div>
       </DialogContent>

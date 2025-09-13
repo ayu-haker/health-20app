@@ -85,7 +85,7 @@ export default {
             height: "0",
           },
         },
-        "float": {
+        float: {
           from: { transform: "translateY(0)" },
           to: { transform: "translateY(-6px)" },
         },

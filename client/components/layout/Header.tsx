@@ -22,16 +22,24 @@ export default function Header() {
               />
             </svg>
           </span>
-          <span className="text-base font-extrabold tracking-tight">Aether HealthTech</span>
+          <span className="text-base font-extrabold tracking-tight">
+            Aether HealthTech
+          </span>
         </Link>
         <nav className="hidden items-center gap-1 md:flex">
           <NavLink to="/" className={navLinkClass} end>
             Home
           </NavLink>
-          <a href="#sectors" className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground">
+          <a
+            href="#sectors"
+            className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground"
+          >
             Sectors
           </a>
-          <a href="#trends" className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground">
+          <a
+            href="#trends"
+            className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground"
+          >
             Trends
           </a>
           <NavLink to="/first-aid" className={navLinkClass}>
@@ -42,7 +50,10 @@ export default function Header() {
           </NavLink>
         </nav>
         <div className="flex items-center gap-2">
-          <a href="#contact" className="hidden text-sm text-muted-foreground hover:text-foreground sm:inline">
+          <a
+            href="#contact"
+            className="hidden text-sm text-muted-foreground hover:text-foreground sm:inline"
+          >
             Contact
           </a>
           <Button asChild>

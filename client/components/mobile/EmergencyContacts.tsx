@@ -39,7 +39,11 @@ export default function EmergencyContacts({
     if (!name.trim() || !phone.trim()) return;
     const next = [
       ...contacts,
-      { id: `${Date.now()}-${Math.random().toString(36).slice(2) }`, name: name.trim(), phone: phone.trim() },
+      {
+        id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+        name: name.trim(),
+        phone: phone.trim(),
+      },
     ];
     setContacts(next);
     saveContacts(next);
@@ -57,7 +61,11 @@ export default function EmergencyContacts({
     const existing = new Set(contacts.map((c) => c.phone));
     const recs = recommended
       .filter((r) => r.phone && !existing.has(r.phone))
-      .map((r) => ({ id: `${Date.now()}-${r.phone}`, name: r.label, phone: r.phone }));
+      .map((r) => ({
+        id: `${Date.now()}-${r.phone}`,
+        name: r.label,
+        phone: r.phone,
+      }));
     if (recs.length === 0) return;
     const next = [...contacts, ...recs];
     setContacts(next);
@@ -85,19 +93,31 @@ export default function EmergencyContacts({
       </div>
       <div className="grid gap-2">
         {contacts.length === 0 && (
-          <p className="text-xs text-muted-foreground">No contacts yet. Add trusted people or services.</p>
+          <p className="text-xs text-muted-foreground">
+            No contacts yet. Add trusted people or services.
+          </p>
         )}
         {contacts.map((c) => (
-          <div key={c.id} className="flex items-center justify-between rounded-md border p-2">
+          <div
+            key={c.id}
+            className="flex items-center justify-between rounded-md border p-2"
+          >
             <div>
               <div className="text-sm font-medium">{c.name}</div>
               <div className="text-xs text-muted-foreground">{c.phone}</div>
             </div>
             <div className="flex items-center gap-2">
               <Button size="sm" asChild>
-                <a href={`tel:${c.phone}`}><Phone className="mr-2 h-4 w-4" /> Call</a>
+                <a href={`tel:${c.phone}`}>
+                  <Phone className="mr-2 h-4 w-4" /> Call
+                </a>
               </Button>
-              <Button size="sm" variant="ghost" onClick={() => remove(c.id)} aria-label={`Remove ${c.name}`}>
+              <Button
+                size="sm"
+                variant="ghost"
+                onClick={() => remove(c.id)}
+                aria-label={`Remove ${c.name}`}
+              >
                 <Trash2 className="h-4 w-4" />
               </Button>
             </div>
@@ -105,9 +125,19 @@ export default function EmergencyContacts({
         ))}
       </div>
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
-        <Input placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
-        <Input placeholder="Phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
-        <Button onClick={addContact}><Plus className="mr-2 h-4 w-4" /> Add</Button>
+        <Input
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <Input
+          placeholder="Phone"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+        />
+        <Button onClick={addContact}>
+          <Plus className="mr-2 h-4 w-4" /> Add
+        </Button>
       </div>
     </div>
   );

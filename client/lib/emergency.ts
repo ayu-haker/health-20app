@@ -37,7 +37,10 @@ export function getEmergencyForCountry(code?: string): EmergencyNumbers {
   return MAP[code.toUpperCase()] ?? { main: "112" };
 }
 
-export async function reverseGeocode(lat: number, lon: number): Promise<{ countryCode?: string; countryName?: string }> {
+export async function reverseGeocode(
+  lat: number,
+  lon: number,
+): Promise<{ countryCode?: string; countryName?: string }> {
   try {
     const res = await fetch(
       `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`,
