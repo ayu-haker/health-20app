@@ -59,11 +59,11 @@ export default function Index() {
 
   const featureTiles = [
     { title: "Active SOS", icon: Ambulance, onClick: callEmergency, accent: "bg-red-50 text-red-600" },
-    { title: "First Aid Kit", icon: FirstAidKit, href: "/first-aid" },
+    { title: "First Aid Kit", icon: Bandage, href: "/first-aid" },
     { title: "Find Hospitals", icon: MapPin, onClick: findHospitals },
     { title: "First Aid Guide", icon: BookOpen, href: "/first-aid" },
     { title: "Disaster Response", icon: ShieldCheck, onClick: () => toast({ title: "Disaster response", description: "Follow local authorities. Keep essentials ready." }) },
-    { title: "AI Guide", icon: Bot, onClick: () => toast({ title: "AI Guide", description: "Triage assistant coming soon." }) },
+    { title: "AI Guide", icon: Robot, onClick: () => toast({ title: "AI Guide", description: "Triage assistant coming soon." }) },
     { title: "Emergency Number", icon: Phone, onClick: callEmergency },
     { title: "Visual Aid", icon: ImageIcon, onClick: () => setVisualAid(true) },
     { title: "Personal Safety", icon: ShieldCheck, onClick: () => toast({ title: "Personal safety", description: "Share your trip and location with trusted contacts." }) },
