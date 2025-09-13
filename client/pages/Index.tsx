@@ -218,7 +218,7 @@ export default function Index() {
         <h2 className="text-lg font-semibold">Health & wellness</h2>
         <div className="mt-3 grid gap-3 sm:grid-cols-2">
           {["Stay hydrated and keep a small first‑aid kit.", "Store emergency contacts under ICE (In Case of Emergency).", "Know CPR basics and choking response.", "Prepare a go‑bag for disasters (water, meds, IDs)."].map((tip) => (
-            <div key={tip} className="rounded-lg border bg-card p-4 text-sm text-muted-foreground">{tip}</div>
+            <div key={tip} className="rounded-lg border bg-transparent supports-[backdrop-filter]:bg-background/20 backdrop-blur-sm p-4 text-sm text-muted-foreground">{tip}</div>
           ))}
         </div>
       </section>
