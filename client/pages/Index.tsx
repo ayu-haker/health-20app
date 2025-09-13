@@ -18,11 +18,14 @@ import {
   Star,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { reverseGeocode, getEmergencyForCountry, type EmergencyNumbers } from "@/lib/emergency";
 
 export default function Index() {
   const { toast } = useToast();
   const [visualAid, setVisualAid] = useState(false);
   const [loc, setLoc] = useState<{ lat: number; lng: number } | null>(null);
+  const [country, setCountry] = useState<{ code?: string; name?: string }>({});
+  const [emergency, setEmergency] = useState<EmergencyNumbers>({ main: "112" });
 
   useEffect(() => {
     if (!visualAid) return;
@@ -45,10 +48,19 @@ export default function Index() {
       );
     });
 
+  const setGeoContext = async (position: { lat: number; lng: number }) => {
+    try {
+      const res = await reverseGeocode(position.lat, position.lng);
+      setCountry({ code: res.countryCode, name: res.countryName });
+      setEmergency(getEmergencyForCountry(res.countryCode));
+    } catch {}
+  };
+
   const findHospitals = async () => {
     try {
       const position = await getLocation();
       setLoc(position);
+      setGeoContext(position);
       const url = `https://www.google.com/maps/search/hospital/@${position.lat},${position.lng},14z`;
       window.open(url, "_blank");
     } catch {
@@ -183,6 +195,8 @@ export default function Index() {
               <p className="mt-1 text-xs text-muted-foreground">Immediate help, first aid, and safety tools.</p>
             </div>
             <SOSDialog
+              emergency={emergency}
+              country={country}
               trigger={
                 <Button size="lg" className="rounded-full bg-red-600 hover:bg-red-700">
                   SOS
@@ -202,10 +216,10 @@ export default function Index() {
           <div className="mt-4 text-xs text-muted-foreground">
             {loc ? (
               <span>
-                Location ready: {loc.lat.toFixed(4)}, {loc.lng.toFixed(4)}
+                Location ready: {loc.lat.toFixed(4)}, {loc.lng.toFixed(4)}{country.code ? ` • ${country.name} (${country.code})` : ""} • Local emergency: {emergency.main}
               </span>
             ) : (
-              <button className="underline underline-offset-4" onClick={() => getLocation().then(setLoc).catch(() => toast({ title: "Location", description: "Permission denied." }))}>
+              <button className="underline underline-offset-4" onClick={() => getLocation().then((p)=>{ setLoc(p); setGeoContext(p); }).catch(() => toast({ title: "Location", description: "Permission denied." }))}>
                 Enable location for faster help
               </button>
             )}
