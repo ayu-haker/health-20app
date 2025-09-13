@@ -165,7 +165,7 @@ export default function Index() {
     <main className="min-h-screen bg-background">
       {/* Mobile-first hero with SOS */}
       <section className="relative border-b">
-        <div className="absolute inset-0 -z-20 pointer-events-none">
+        <div className="absolute inset-0 z-0 pointer-events-none">
           <iframe
             src="https://my.spline.design/dnaparticles-XogOjO4A5qxlEqHmokAmmL5L/"
             className="h-full w-full"
@@ -175,8 +175,8 @@ export default function Index() {
             allow="autoplay; xr-spatial-tracking; fullscreen"
           />
         </div>
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(40rem_30rem_at_0%_-10%,hsl(var(--brand-muted))_0%,transparent_60%),radial-gradient(30rem_20rem_at_120%_10%,hsl(var(--accent)/0.12)_0%,transparent_50%)]" />
-        <div className="container py-8">
+        <div className="absolute inset-0 z-10 bg-[radial-gradient(40rem_30rem_at_0%_-10%,hsl(var(--brand-muted))_0%,transparent_60%),radial-gradient(30rem_20rem_at_120%_10%,hsl(var(--accent)/0.12)_0%,transparent_50%)]" />
+        <div className="container relative z-20 py-8">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-extrabold tracking-tight">Aether Emergency</h1>
