@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
 import { Phone, Share2 } from "lucide-react";
+import EmergencyContacts from "./EmergencyContacts";
 
 function buildMapsUrl(lat: number, lng: number) {
   return `https://www.google.com/maps/search/hospital/@${lat},${lng},14z`;
@@ -69,11 +70,11 @@ export default function SOSDialog({ trigger, emergency, country }: Props) {
           <Button size="lg" className="w-full" asChild>
             <a href={`tel:${(emergency?.main ?? "112")}`}><Phone className="mr-2 h-4 w-4" /> Call {(emergency?.main ?? "112")} {country?.code ? `(${country.code})` : ""}</a>
           </Button>
-          {emergency?.alt?.[0] && (
-            <Button size="lg" variant="secondary" className="w-full" asChild>
-              <a href={`tel:${emergency.alt[0]}`}><Phone className="mr-2 h-4 w-4" /> Alt {emergency.alt[0]}</a>
+          {emergency?.alt?.map((n) => (
+            <Button key={n} size="lg" variant="secondary" className="w-full" asChild>
+              <a href={`tel:${n}`}><Phone className="mr-2 h-4 w-4" /> Alt {n}</a>
             </Button>
-          )}
+          ))}
           <div className="grid grid-cols-3 gap-2">
             {emergency?.ambulance && (
               <Button variant="outline" asChild>
@@ -98,6 +99,15 @@ export default function SOSDialog({ trigger, emergency, country }: Props) {
           {loc && (
             <p className="mt-1 truncate text-xs text-muted-foreground">Ready: {loc.lat.toFixed(4)}, {loc.lng.toFixed(4)}</p>
           )}
+          <EmergencyContacts
+            recommended={[
+              { label: country?.code ? `${country.code} Main` : "Emergency", phone: emergency?.main ?? "112" },
+              ...((emergency?.alt ?? []).map((n) => ({ label: country?.code ? `${country.code} Alt` : "Alt", phone: n }))),
+              ...(emergency?.ambulance ? [{ label: "Ambulance", phone: emergency.ambulance }] : []),
+              ...(emergency?.police ? [{ label: "Police", phone: emergency.police }] : []),
+              ...(emergency?.fire ? [{ label: "Fire", phone: emergency.fire }] : []),
+            ]}
+          />
         </div>
       </DialogContent>
     </Dialog>
