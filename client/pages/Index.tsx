@@ -23,6 +23,8 @@ import {
   ShieldCheck,
   Star,
 } from "lucide-react";
+import WellbeingChart from "@/components/mobile/WellbeingChart";
+import WellbeingActions from "@/components/mobile/WellbeingActions";
 import { useToast } from "@/hooks/use-toast";
 import {
   reverseGeocode,
@@ -323,24 +325,29 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Health & Wellness tips */}
+      {/* Mobile Wellbeing */}
       <section className="container py-8">
-        <h2 className="text-lg font-semibold">Health & wellness</h2>
-        <div className="mt-3 grid gap-3 sm:grid-cols-2">
-          {[
-            "Stay hydrated and keep a small first‑aid kit.",
-            "Store emergency contacts under ICE (In Case of Emergency).",
-            "Know CPR basics and choking response.",
-            "Prepare a go‑bag for disasters (water, meds, IDs).",
-          ].map((tip) => (
-            <div
-              key={tip}
-              className="rounded-lg border bg-transparent supports-[backdrop-filter]:bg-background/20 backdrop-blur-sm p-4 text-sm text-muted-foreground"
-            >
-              {tip}
-            </div>
-          ))}
+        <h2 className="font-brand text-lg font-semibold">Mobile wellbeing</h2>
+        <p className="mt-1 text-xs text-muted-foreground">Daily overview and quick check‑ins.</p>
+        <div className="mt-4 grid grid-cols-3 gap-3">
+          <div className="rounded-lg border bg-transparent supports-[backdrop-filter]:bg-background/20 backdrop-blur-sm p-3">
+            <p className="text-[10px] text-muted-foreground">Steps (today)</p>
+            <p className="mt-1 text-xl font-semibold">7,420</p>
+            <p className="text-[10px] text-green-600">+12%</p>
+          </div>
+          <div className="rounded-lg border bg-transparent supports-[backdrop-filter]:bg-background/20 backdrop-blur-sm p-3">
+            <p className="text-[10px] text-muted-foreground">Heart rate</p>
+            <p className="mt-1 text-xl font-semibold">72 bpm</p>
+            <p className="text-[10px] text-muted-foreground">resting</p>
+          </div>
+          <div className="rounded-lg border bg-transparent supports-[backdrop-filter]:bg-background/20 backdrop-blur-sm p-3">
+            <p className="text-[10px] text-muted-foreground">Sleep</p>
+            <p className="mt-1 text-xl font-semibold">7h 15m</p>
+            <p className="text-[10px] text-muted-foreground">last night</p>
+          </div>
         </div>
+        <WellbeingChart />
+        <WellbeingActions />
       </section>
 
       {/* Reviews */}
