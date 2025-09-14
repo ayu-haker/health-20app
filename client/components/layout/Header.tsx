@@ -22,8 +22,8 @@ export default function Header() {
               />
             </svg>
           </span>
-          <span className="text-base font-extrabold tracking-tight">
-            Aether HealthTech
+          <span className="font-brand text-base font-extrabold tracking-tight">
+            Arogya Health Tech
           </span>
         </Link>
         <nav className="hidden items-center gap-1 md:flex">
