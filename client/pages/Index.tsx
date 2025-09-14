@@ -25,6 +25,8 @@ import {
 } from "lucide-react";
 import WellbeingChart from "@/components/mobile/WellbeingChart";
 import WellbeingActions from "@/components/mobile/WellbeingActions";
+import SleepTracker from "@/components/mobile/SleepTracker";
+import WaterAlert from "@/components/mobile/WaterAlert";
 import { useToast } from "@/hooks/use-toast";
 import {
   reverseGeocode,
@@ -348,6 +350,8 @@ export default function Index() {
         </div>
         <WellbeingChart />
         <WellbeingActions />
+        <SleepTracker />
+        <WaterAlert />
       </section>
 
       {/* Reviews */}
