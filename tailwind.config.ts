@@ -63,6 +63,19 @@ export default {
           muted: "hsl(var(--brand-muted))",
         },
       },
+      fontFamily: {
+        brand: [
+          "Sora",
+          "Inter",
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "Segoe UI",
+          "Roboto",
+          "Helvetica Neue",
+          "Arial",
+        ],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
