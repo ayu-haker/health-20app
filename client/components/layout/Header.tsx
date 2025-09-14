@@ -22,7 +22,7 @@ export default function Header() {
               />
             </svg>
           </span>
-          <span className="font-brand text-base font-extrabold tracking-tight">
+          <span className="font-brand text-base font-extrabold tracking-tight bg-gradient-to-r from-brand via-accent to-primary bg-clip-text text-transparent">
             Arogya Health Tech
           </span>
         </Link>
