@@ -267,7 +267,7 @@ export default function Index() {
         <div className="container relative z-20 py-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="font-brand text-2xl font-extrabold tracking-tight">
+              <h1 className="font-brand text-2xl font-extrabold tracking-tight bg-gradient-to-r from-brand via-accent to-primary bg-clip-text text-transparent">
                 Arogya Health Tech
               </h1>
               <p className="mt-1 text-xs text-muted-foreground">
@@ -329,7 +329,7 @@ export default function Index() {
 
       {/* Mobile Wellbeing */}
       <section className="container py-8">
-        <h2 className="font-brand text-lg font-semibold">Mobile wellbeing</h2>
+        <h2 className="font-brand text-lg font-semibold bg-gradient-to-r from-brand to-accent bg-clip-text text-transparent">Mobile wellbeing</h2>
         <p className="mt-1 text-xs text-muted-foreground">
           Daily overview and quick check‑ins.
         </p>
