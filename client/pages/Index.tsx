@@ -261,8 +261,8 @@ export default function Index() {
         <div className="container relative z-20 py-8">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-extrabold tracking-tight">
-                Aether Emergency
+              <h1 className="font-brand text-2xl font-extrabold tracking-tight">
+                Arogya Health Tech
               </h1>
               <p className="mt-1 text-xs text-muted-foreground">
                 Immediate help, first aid, and safety tools.
