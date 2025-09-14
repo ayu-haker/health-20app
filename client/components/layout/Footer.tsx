@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="border-t bg-background/60" id="contact">
       <div className="container flex flex-col items-start justify-between gap-6 py-10 md:flex-row md:items-center">
         <div>
-          <p className="font-brand text-xl font-semibold">Arogya Health Tech</p>
+          <p className="font-brand text-xl font-semibold bg-gradient-to-r from-brand via-accent to-primary bg-clip-text text-transparent">Arogya Health Tech</p>
           <p className="mt-2 max-w-xl text-sm text-muted-foreground">
             Building cutting-edge technology that advances healthcare outcomes
             for growing populations around the world.
