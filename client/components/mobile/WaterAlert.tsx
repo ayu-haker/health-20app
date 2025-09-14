@@ -18,7 +18,12 @@ export default function WaterAlert() {
     try {
       const raw = localStorage.getItem(HYDRATE_KEY);
       if (raw) {
-        const s = JSON.parse(raw) as { target:number; total:number; enabled:boolean; nextAt:number|null };
+        const s = JSON.parse(raw) as {
+          target: number;
+          total: number;
+          enabled: boolean;
+          nextAt: number | null;
+        };
         setTarget(s.target ?? 2000);
         setTotal(s.total ?? 0);
         setEnabled(s.enabled ?? true);
@@ -29,7 +34,9 @@ export default function WaterAlert() {
 
   useEffect(() => {
     const s = { target, total, enabled, nextAt };
-    try { localStorage.setItem(HYDRATE_KEY, JSON.stringify(s)); } catch {}
+    try {
+      localStorage.setItem(HYDRATE_KEY, JSON.stringify(s));
+    } catch {}
   }, [target, total, enabled, nextAt]);
 
   useEffect(() => {
@@ -44,15 +51,23 @@ export default function WaterAlert() {
       // Quiet hours 22:00 - 08:00
       if (hours >= 22 || hours < 8) return;
       if (nextAt && now >= nextAt) {
-        toast({ title: "Hydration reminder", description: "Time to drink water." });
+        toast({
+          title: "Hydration reminder",
+          description: "Time to drink water.",
+        });
         // schedule next in 60 minutes
         setNextAt(now + 60 * 60 * 1000);
       }
     }, 60 * 1000); // check every minute
-    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
   }, [enabled, nextAt, toast]);
 
-  const progress = useMemo(() => Math.min(100, Math.round((total / target) * 100)), [total, target]);
+  const progress = useMemo(
+    () => Math.min(100, Math.round((total / target) * 100)),
+    [total, target],
+  );
 
   const add = (ml: number) => {
     setTotal((t) => Math.min(target, t + ml));
@@ -75,31 +90,49 @@ export default function WaterAlert() {
       <div className="mt-2">
         <Progress value={progress} />
         <div className="mt-1 flex items-center justify-between text-xs text-muted-foreground">
-          <span>{total} / {target} ml</span>
+          <span>
+            {total} / {target} ml
+          </span>
           <span>{progress}%</span>
         </div>
       </div>
       <div className="mt-2 flex items-center gap-2">
-        <Button size="sm" onClick={() => add(250)}>+250 ml</Button>
-        <Button size="sm" variant="secondary" onClick={() => add(500)}>+500 ml</Button>
-        <Button size="sm" variant="ghost" onClick={resetDay}>Reset</Button>
+        <Button size="sm" onClick={() => add(250)}>
+          +250 ml
+        </Button>
+        <Button size="sm" variant="secondary" onClick={() => add(500)}>
+          +500 ml
+        </Button>
+        <Button size="sm" variant="ghost" onClick={resetDay}>
+          Reset
+        </Button>
       </div>
       <div className="mt-2 grid grid-cols-3 items-center gap-2">
-        <label className="text-xs text-muted-foreground">Daily target (ml)</label>
+        <label className="text-xs text-muted-foreground">
+          Daily target (ml)
+        </label>
         <Input
           type="number"
           min={500}
           step={100}
           value={target}
-          onChange={(e) => setTarget(Math.max(500, Number(e.target.value || 0)))}
+          onChange={(e) =>
+            setTarget(Math.max(500, Number(e.target.value || 0)))
+          }
           className="col-span-2 h-8"
         />
       </div>
       <div className="mt-2 flex items-center gap-2">
-        <Button size="sm" variant="outline" onClick={() => remindIn(15)}>Remind in 15m</Button>
-        <Button size="sm" variant="outline" onClick={() => remindIn(60)}>Remind in 1h</Button>
+        <Button size="sm" variant="outline" onClick={() => remindIn(15)}>
+          Remind in 15m
+        </Button>
+        <Button size="sm" variant="outline" onClick={() => remindIn(60)}>
+          Remind in 1h
+        </Button>
         <span className="text-xs text-muted-foreground">
-          {nextAt ? `Next: ${new Date(nextAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}` : "No reminder scheduled"}
+          {nextAt
+            ? `Next: ${new Date(nextAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`
+            : "No reminder scheduled"}
         </span>
       </div>
     </div>

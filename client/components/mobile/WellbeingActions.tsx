@@ -23,7 +23,9 @@ export default function WellbeingActions() {
 
   const setMoodPersist = (m: string) => {
     setMood(m);
-    try { localStorage.setItem(MOOD_KEY, m); } catch {}
+    try {
+      localStorage.setItem(MOOD_KEY, m);
+    } catch {}
   };
 
   return (
@@ -44,13 +46,17 @@ export default function WellbeingActions() {
           ))}
         </div>
         {mood && (
-          <p className="mt-2 text-xs text-muted-foreground">Saved mood: {mood}</p>
+          <p className="mt-2 text-xs text-muted-foreground">
+            Saved mood: {mood}
+          </p>
         )}
       </div>
       <div className="rounded-lg border bg-transparent supports-[backdrop-filter]:bg-background/20 backdrop-blur-sm p-3">
         <div className="flex items-center justify-between">
           <p className="text-sm font-medium">Breathing exercise</p>
-          <Button size="sm" onClick={() => setBreath((v) => !v)}>{breath ? "Stop" : "Start"}</Button>
+          <Button size="sm" onClick={() => setBreath((v) => !v)}>
+            {breath ? "Stop" : "Start"}
+          </Button>
         </div>
         <div className="mt-3 flex items-center justify-center">
           <div
@@ -59,7 +65,9 @@ export default function WellbeingActions() {
             aria-label="Breathing indicator"
           />
         </div>
-        <p className="mt-2 text-center text-xs text-muted-foreground">Inhale as the circle expands, exhale as it contracts.</p>
+        <p className="mt-2 text-center text-xs text-muted-foreground">
+          Inhale as the circle expands, exhale as it contracts.
+        </p>
       </div>
     </div>
   );

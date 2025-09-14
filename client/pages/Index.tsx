@@ -330,7 +330,9 @@ export default function Index() {
       {/* Mobile Wellbeing */}
       <section className="container py-8">
         <h2 className="font-brand text-lg font-semibold">Mobile wellbeing</h2>
-        <p className="mt-1 text-xs text-muted-foreground">Daily overview and quick check‑ins.</p>
+        <p className="mt-1 text-xs text-muted-foreground">
+          Daily overview and quick check‑ins.
+        </p>
         <div className="mt-4 grid grid-cols-3 gap-3">
           <div className="rounded-lg border bg-transparent supports-[backdrop-filter]:bg-background/20 backdrop-blur-sm p-3">
             <p className="text-[10px] text-muted-foreground">Steps (today)</p>

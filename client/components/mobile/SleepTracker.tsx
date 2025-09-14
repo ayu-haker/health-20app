@@ -38,7 +38,9 @@ export default function SleepTracker() {
 
   useEffect(() => {
     const state = { sleeping, start, lastDuration: last };
-    try { localStorage.setItem(SLEEP_STATE_KEY, JSON.stringify(state)); } catch {}
+    try {
+      localStorage.setItem(SLEEP_STATE_KEY, JSON.stringify(state));
+    } catch {}
   }, [sleeping, start, last]);
 
   useEffect(() => {
@@ -48,10 +50,15 @@ export default function SleepTracker() {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
     }
-    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
   }, [sleeping]);
 
-  const elapsed = useMemo(() => (sleeping && start ? Date.now() - start : 0), [sleeping, start]);
+  const elapsed = useMemo(
+    () => (sleeping && start ? Date.now() - start : 0),
+    [sleeping, start],
+  );
 
   const startSleep = () => {
     if (sleeping) return;
@@ -86,13 +93,17 @@ export default function SleepTracker() {
         </div>
         <div className="rounded-md border p-3">
           <p className="text-[10px] text-muted-foreground">Current</p>
-          <p className="mt-1 text-lg font-semibold">{elapsed ? fmt(elapsed) : "—"}</p>
+          <p className="mt-1 text-lg font-semibold">
+            {elapsed ? fmt(elapsed) : "—"}
+          </p>
         </div>
         <div className="flex items-center justify-end gap-2">
           {!sleeping ? (
             <Button onClick={startSleep}>Start sleep</Button>
           ) : (
-            <Button variant="destructive" onClick={stopSleep}>Stop</Button>
+            <Button variant="destructive" onClick={stopSleep}>
+              Stop
+            </Button>
           )}
         </div>
       </div>
