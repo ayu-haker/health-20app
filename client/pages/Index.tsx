@@ -329,7 +329,9 @@ export default function Index() {
 
       {/* Mobile Wellbeing */}
       <section className="container py-8">
-        <h2 className="font-brand text-lg font-semibold bg-gradient-to-r from-brand to-accent bg-clip-text text-transparent">Mobile wellbeing</h2>
+        <h2 className="font-brand text-lg font-semibold bg-gradient-to-r from-brand to-accent bg-clip-text text-transparent">
+          Mobile wellbeing
+        </h2>
         <p className="mt-1 text-xs text-muted-foreground">
           Daily overview and quick check‑ins.
         </p>
