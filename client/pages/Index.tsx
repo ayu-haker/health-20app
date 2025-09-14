@@ -112,7 +112,9 @@ export default function Index() {
             <Stethoscope className="size-5" />
           </div>
           <CardTitle className="text-sm">First Aid Kit</CardTitle>
-          <CardDescription className="hidden sm:block">Open the guide</CardDescription>
+          <CardDescription className="hidden sm:block">
+            Open the guide
+          </CardDescription>
         </CardHeader>
       </Card>
     </Link>,
