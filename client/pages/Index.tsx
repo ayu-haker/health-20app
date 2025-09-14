@@ -29,6 +29,7 @@ import {
   getEmergencyForCountry,
   type EmergencyNumbers,
 } from "@/lib/emergency";
+import { Link } from "react-router-dom";
 
 export default function Index() {
   const { toast } = useToast();
@@ -104,22 +105,17 @@ export default function Index() {
         </Card>
       }
     />,
-    <Card
-      key="kit"
-      className="group cursor-pointer transition-colors hover:bg-accent/30"
-    >
-      <CardHeader className="p-4">
-        <div className="mb-2 inline-flex size-10 items-center justify-center rounded-md bg-primary/10 text-primary ">
-          <Stethoscope className="size-5" />
-        </div>
-        <CardTitle className="text-sm">
-          <a href="/first-aid">First Aid Kit</a>
-        </CardTitle>
-        <CardDescription className="hidden sm:block">
-          Open the guide
-        </CardDescription>
-      </CardHeader>
-    </Card>,
+    <Link key="kit" to="/first-aid" className="block">
+      <Card className="group cursor-pointer transition-colors hover:bg-accent/30">
+        <CardHeader className="p-4">
+          <div className="mb-2 inline-flex size-10 items-center justify-center rounded-md bg-primary/10 text-primary ">
+            <Stethoscope className="size-5" />
+          </div>
+          <CardTitle className="text-sm">First Aid Kit</CardTitle>
+          <CardDescription className="hidden sm:block">Open the guide</CardDescription>
+        </CardHeader>
+      </Card>
+    </Link>,
     <Card
       key="hospitals"
       onClick={findHospitals as any}
